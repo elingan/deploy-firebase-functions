@@ -12,7 +12,15 @@ if [ -z "${FIREBASE_PROJECT}" ]; then
     exit 1
 fi
 
+if [ -z "${FIREBASE_CONFIG_FILE}" ]; then
+    echo "FIREBASE_CONFIG_FILE is missing"
+    exit 1
+fi
+
+firebase functions:config:set env="$(cat ${FIREBASE_CONFIG_FILE})"
+
 firebase deploy \
     -m "${GITHUB_REF} (${GITHUB_SHA})" \
     --project ${FIREBASE_PROJECT} \
     --only functions
+-
