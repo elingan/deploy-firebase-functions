@@ -12,7 +12,7 @@ A GitHub Action to deploy to Firebase Cloud Functions for Node14.
 
 Deploy the `main` branch when a commit is pushed to it:
 
-```
+```yaml
 name: Deploy the main branch
 on:
   push:
@@ -24,17 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: jsryudev/deploy-firebase-functions@v0.0.2
+    - uses: elingan/deploy-firebase-functions@main
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         FIREBASE_PROJECT: firebase-project-id
-        FIREBASE_CONFIG_FILENAME: ${{ secrets.FIREBASE_CONFIG_FILENAME }}
-        
+        FIREBASE_CONFIG_FILENAME: .env.json
 ```
 
 Deploy only when a tag starts with `v` is pushed:
 
-```
+```yaml
 name: Deploy a tag
 on:
   push:
@@ -46,9 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: jsryudev/deploy-firebase-functions@v0.0.2
+    - uses: elingan/deploy-firebase-functions@main
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         FIREBASE_PROJECT: firebase-project-id
-        FIREBASE_CONFIG_FILENAME: ${{ secrets.FIREBASE_CONFIG_FILENAME }}
+        FIREBASE_CONFIG_FILENAME: .env.json
 ```

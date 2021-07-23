@@ -19,7 +19,11 @@ fi
 
 firebase use ${FIREBASE_PROJECT}
 
+firebase use
+
 firebase functions:config:set env="$(cat ${FIREBASE_CONFIG_FILENAME})"
+
+echo "Firebase file environment: ${FIREBASE_CONFIG_FILENAME}"
 
 firebase deploy \
     -m "${GITHUB_REF} (${GITHUB_SHA})" \
