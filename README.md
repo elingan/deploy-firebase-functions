@@ -1,4 +1,4 @@
-# Deploy to Firebase Functions for Node14
+# Deploy to Firebase Functions for Node14 (with Firebase environment configuration)
 
 A GitHub Action to deploy to Firebase Cloud Functions for Node14.
 
@@ -6,6 +6,7 @@ A GitHub Action to deploy to Firebase Cloud Functions for Node14.
 - Make sure that you have the `firebase.json` file in the repository
 - To obtain the Firebase token, run `firebase login:ci` on your local computer and [store the token](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) as the `FIREBASE_TOKEN` secret
 - Specify the Firebase project name in the `FIREBASE_PROJECT` env var
+- Specify the Firebase environment configuration in the `FIREBASE_CONFIG_FILE` env var (based on [Environment configuration](https://firebase.google.com/docs/functions/config-env))
 
 ## Workflow examples
 
@@ -27,6 +28,8 @@ jobs:
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         FIREBASE_PROJECT: firebase-project-id
+        FIREBASE_CONFIG_FILENAME: ${{ secrets.FIREBASE_CONFIG_FILENAME }}
+        
 ```
 
 Deploy only when a tag starts with `v` is pushed:
@@ -47,4 +50,5 @@ jobs:
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         FIREBASE_PROJECT: firebase-project-id
+        FIREBASE_CONFIG_FILENAME: ${{ secrets.FIREBASE_CONFIG_FILENAME }}
 ```
