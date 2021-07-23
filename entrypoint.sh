@@ -17,6 +17,8 @@ if [ -z "${FIREBASE_CONFIG_FILENAME}" ]; then
     exit 1
 fi
 
+firebase use ${FIREBASE_PROJECT}
+
 firebase functions:config:set env="$(cat ${FIREBASE_CONFIG_FILENAME})"
 
 firebase deploy \
